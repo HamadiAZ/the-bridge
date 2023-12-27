@@ -18,7 +18,6 @@ function Card({ image_data, title, price }) {
   useEffect(() => {
     handleImageLoad(); // Trigger image load when the component mounts
   }, []);
-  console.log(img);
 
   return (
     <div className="w-full">

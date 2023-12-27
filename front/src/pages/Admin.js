@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import React, { useState } from "react";
 import axios from "axios";
+import MessageList from "../components/MessagesList";
 
 function Admin() {
   const [title, setTitle] = useState("");
@@ -56,7 +57,7 @@ function Admin() {
           </div>
         </form>
       </div>
-     
+     <MessageList />
     </React.Fragment>
   );
 }

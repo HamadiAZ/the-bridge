@@ -2,23 +2,24 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Card from "../components/Card";
 import backgroundImage from "../resources/homeBackground.jpg";
-import axios from 'axios';
+import axios from "axios";
+import ContactForm from "../components/ContactForm";
 
 function Home() {
-
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/products')
-      .then(response => {
+    axios
+      .get("http://localhost:3001/products")
+      .then((response) => {
         setProducts(response.data);
       })
-      .catch(error => {
-        console.error('Error:', error);
+      .catch((error) => {
+        console.error("Error:", error);
       });
   }, []);
-  console.log(products)
-  
+ 
+
   return (
     <React.Fragment>
       <Header />
@@ -46,25 +47,7 @@ function Home() {
         ))}
       </div>
 
-      {/* Contact */}
-      <div className="flex flex-col mb-20 justify-center items-center gap-3 w-full h-fit py-3 md:w-2/3 lg:w-6/12 xl:8/12 mx-auto md:rounded-3xl bg-amber-500">
-        <p className="text-xl font-bold">Contact Us</p>
-        <div className="flex flex-col w-fit">
-          <label className="rounded-xl font-medium tracking-widest">NAME</label>
-          <input className="rounded-full px-3 py-2 opacity-80  min-w-96" placeholder="Jiara Martins"></input>
-        </div>
-        <div className="flex flex-col w-fit">
-          <label className="rounded-xl font-medium tracking-widest">EMAIL</label>
-          <input className="rounded-full px-3 py-2 opacity-80  min-w-96" placeholder="Hello@really.com"></input>
-        </div>
-        <div className="flex flex-col w-fit">
-          <label className="rounded-xl font-medium tracking-widest">MESSAGE</label>
-          <textarea className="rounded-2xl h-40 px-3 py-2 opacity-80 min-w-96" placeholder="Write your message here"></textarea>
-        </div>
-        <button className="py-1 w-fit px-9 mb-4 mt-2 bg-pink-700 text-white text-lg font-semibold rounded-lg" style={{ fontFamily: "Segoe UI" }}>
-          Send the message
-        </button>
-      </div>
+      <ContactForm />
     </React.Fragment>
   );
 }
