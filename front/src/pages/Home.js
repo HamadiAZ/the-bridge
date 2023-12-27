@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Card from "../components/Card";
-import { dummyData } from "../const";
 import backgroundImage from "../resources/homeBackground.jpg";
+import axios from 'axios';
 
 function Home() {
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/products')
+      .then(response => {
+        setProducts(response.data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }, []);
+  console.log(products)
+  
   return (
     <React.Fragment>
       <Header />
@@ -26,8 +40,8 @@ function Home() {
       </div>
 
       {/* List cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {dummyData.map((card, index) => (
+      <div className="px-3 md:px-11 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {products.map((card, index) => (
           <Card key={index} {...card} />
         ))}
       </div>
